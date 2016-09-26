@@ -1,0 +1,15 @@
+{
+    "require": {
+        "php": ">=5.5",
+        "nesbot/carbon": "^1.21",
+        "illuminate/support": "5.1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPRotateBackups\\":  "src/PHPRotateBackups"
+        }
+    }
+}
