@@ -16,7 +16,7 @@ class PHPRotateBackupsTest extends TestCase
         $this->assertCount(20, $driver->getTimestamps());
         
         $driver->array = $this->getManyFiles();
-        $rotator = new PHPRotateBackups\PHPRotateBackups($driver);
+        $rotator = new PHPRotateBackups($driver);
         $rotator->days = 7;
         $rotator->months = 12;
         $rotator->years = 3;
@@ -27,11 +27,21 @@ class PHPRotateBackupsTest extends TestCase
         #$this->assertEquals($this->getExpectedResult(), $result->toJson());
     }
     
-    private function getExpectedResult()
+    public function testExpected()
     {
-
+        $driver = new Simulate();
+        $driver->array = $this->get15Days();
+        
+        $this->assertCount(14, $driver->array);
+        
+        $rotator = new PHPRotateBackups($driver);
+        $rotator->days = 7;
+        $rotator->months = 12;
+        $rotator->years = 3;
+        
+        $this->assertCount(9, $rotator->rotate());
     }
-    
+     
     private function getManyFiles()
     {
         $files = [];
@@ -68,6 +78,17 @@ class PHPRotateBackupsTest extends TestCase
         }
         
         return $files;
+    }
+    
+    private function get15Days()
+    {
+        $timestamps = [];
+        foreach (range(2,15) as $range) {
+            $timestamps["$range-09-2016"] = 
+                Carbon::createFromFormat("d-m-Y", "$range-09-2016")->getTimestamp();
+        }
+        
+        return $timestamps;
     }
     
 }
