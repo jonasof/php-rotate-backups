@@ -27,5 +27,10 @@ class FileTimestamp implements DriverInterface
 
         return $timestamps;
     }
+    
+    public function delete($file)
+    {
+        unlink($this->folder . DIRECTORY_SEPARATOR . $file);
+    }
 
 }

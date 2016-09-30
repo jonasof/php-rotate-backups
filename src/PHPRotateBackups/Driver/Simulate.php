@@ -12,5 +12,10 @@ class Simulate implements DriverInterface
         $timestamps = collect($this->array);
         return $timestamps->sort();
     }
+    
+    public function delete($file)
+    {
+        //faça nada
+    }
 
 }

@@ -36,7 +36,9 @@ class PHPRotateBackups
                 $this->getFilesToKeepYears($timestamps_one_by_day)
             );
         
-        $timestamps->diff($keep); //retorna os deletados!
+        foreach($timestamps->diff($keep) as $key=>$file ) {
+            $this->driver->delete($key);
+        };
          
         return $keep;
     }
