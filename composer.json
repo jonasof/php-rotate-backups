@@ -1,4 +1,9 @@
 {
+    "name": "jonasof/phprotatebackups",
+    "description": "PHP Rotate Backups",
+    "keywords": ["backups", "backup"],
+    "license": "MIT",
+    "homepage": "https://github.com/jonasof/php-rotate-backups/",
     "require": {
         "php": ">=5.5",
         "nesbot/carbon": "^1.21",
